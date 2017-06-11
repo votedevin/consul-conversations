@@ -7,6 +7,7 @@ class CreateConversations < ActiveRecord::Migration
       t.integer :author_id, index: true
       t.datetime :hidden_at, index: true
       t.string :polis_id, null: false
+      t.integer :views_count, default: 0, null: false
 
       t.timestamps null: false
     end

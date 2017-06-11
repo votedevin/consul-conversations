@@ -16,7 +16,8 @@ module Consul
       validates :polis_id, presence: true
 
       scope :for_render, -> { includes(:tags) }
-      scope :sort_by_created_at, -> { order(:created_at) }
+      scope :sort_by_created_at, -> { order(created_at: :desc) }
+      scope :sort_by_most_viewed, -> { order(views_count: :desc) }
     end
   end
 end

@@ -10,12 +10,14 @@ module Consul
 
       skip_authorization_check
 
-      has_orders %w{created_at}, only: :index
+      has_orders %w{most_viewed created_at}, only: :index
 
       def show
         @conversation = ConversationDecorator.new(
           resource_model.for_render.find(params[:id])
         )
+
+        @conversation.update(views_count: @conversation.views_count + 1)
       end
 
       def edit

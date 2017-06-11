@@ -20,6 +20,9 @@ en:
     index:
       title: Conversations
       start_conversation: Start a Conversation
+      orders:
+        most_viewed: most viewed
+        created_at:  newest
 
     form:
       conversation_text: Initial conversation text

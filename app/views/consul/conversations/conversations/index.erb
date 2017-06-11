@@ -10,6 +10,8 @@
         <%= render "shared/banner" %>
       <% end %>
 
+      <%= render 'shared/order_links', i18n_namespace: "conversations.index" %>
+
       <div class="show-for-small-only">
         <%= link_to t("conversations.index.start_conversation"), new_conversation_path, class: 'button expanded' %>
       </div>
