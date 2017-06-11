@@ -13,5 +13,8 @@ class CreateConversations < ActiveRecord::Migration
     end
 
     add_column :tags, :conversations_count, :integer, default: 0
+
+    add_column :conversations, :tsv, :tsvector
+    add_index :conversations, :tsv, using: "gin"
   end
 end

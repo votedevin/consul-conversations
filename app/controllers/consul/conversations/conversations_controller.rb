@@ -12,6 +12,8 @@ module Consul
 
       has_orders %w{most_viewed created_at}, only: :index
 
+      helper_method :taggables_path
+
       def show
         @conversation = ConversationDecorator.new(
           resource_model.for_render.find(params[:id])
@@ -54,6 +56,11 @@ module Consul
                   :tag_list,
                   :rss_url,
                   :polis_id)
+      end
+
+      # NOTE: override helper for conversations for construct right path
+      def taggables_path(_taggable_type, tag_name)
+        conversations_path(search: tag_name)
       end
     end
   end

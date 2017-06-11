@@ -2,6 +2,7 @@ module Consul
   module Conversations
     class Conversation < ActiveRecord::Base
       include ::Taggable
+      include ::Searchable
 
       acts_as_paranoid column: :hidden_at
       include ::ActsAsParanoidAliases
@@ -18,6 +19,18 @@ module Consul
       scope :for_render, -> { includes(:tags) }
       scope :sort_by_created_at, -> { order(created_at: :desc) }
       scope :sort_by_most_viewed, -> { order(views_count: :desc) }
+
+      def searchable_values
+        {
+          title              => 'A',
+          tag_list.join(' ') => 'B',
+          description        => 'D'
+        }
+      end
+
+      def self.search(terms)
+        self.pg_search(terms)
+      end
     end
   end
 end
