@@ -11,9 +11,11 @@
       <div class="small-12 medium-9 column">
         <%= render "shared/back_link" %>
 
-        <%= link_to edit_conversation_path(@conversation), class: 'edit-debate button success small float-right' do %>
-          <span class="icon-edit"></span>
-          <%= t("conversations.show.edit_conversation_link") %>
+        <% if can? :update, @conversation.__getobj__ %>
+          <%= link_to edit_conversation_path(@conversation), class: 'edit-debate button success small float-right' do %>
+            <span class="icon-edit"></span>
+            <%= t("conversations.show.edit_conversation_link") %>
+          <% end %>
         <% end %>
 
         <h1><%= @conversation.title %></h1>

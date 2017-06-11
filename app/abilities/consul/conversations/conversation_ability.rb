@@ -4,6 +4,7 @@ module Consul
       include CanCan::Ability
 
       def initialize(user)
+        user = user || ::User.new
         if user.administrator? || user.moderator?
           can :new, Conversation
           can :edit, Conversation
