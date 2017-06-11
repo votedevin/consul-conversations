@@ -1,0 +1,43 @@
+<% cache [locale_and_user_status, conversation] do %>
+  <div id="<%= dom_id(conversation) %>" class="debate clear" data-type="conversation">
+    <div class="panel">
+      <div class="row">
+
+        <div class="small-12 medium-9 column">
+          <div class="debate-content">
+            <span class="label-debate float-left">Conversation</span>
+            <span class="icon-debates"></span>
+            <h3><%= link_to conversation.title, conversation_path(conversation) %></h3>
+            <p class="debate-info">
+              <%= l conversation.created_at.to_date %>
+
+              <span class="bullet">&nbsp;&bull;&nbsp;</span>
+              <span class="author">
+                <%= conversation.author.name %>
+              </span>
+              <% if conversation.author.display_official_position_badge? %>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span>
+                <span class="label round level-<%= conversation.author.official_level %>">
+                  <%= conversation.author.official_position %>
+                </span>
+              <% end %>
+
+              <% if conversation.author.verified_organization? %>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span>
+                <span class="label round is-association">
+                  <%= t("shared.collective") %>
+                </span>
+              <% end %>
+
+            </p>
+            <div class="debate-description">
+              <%= Consul::Conversations::ConversationDecorator.new(conversation).description_without_polis.html_safe %>
+              <div class="truncate"></div>
+            </div>
+            <%= render "shared/tags", taggable: conversation, limit: 5 %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

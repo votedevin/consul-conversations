@@ -1,0 +1,39 @@
+<% url = @conversation.new_record? ? conversations_path : conversation_path(@conversation) %>
+<%= form_for(@conversation, url: url, as: :conversation) do |f| %>
+  <%= render 'shared/errors', resource: @conversation %>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.label :title, t("conversations.form.conversation_title") %>
+      <%= f.text_field :title, placeholder: t("conversations.form.conversation_title"), label: false %>
+    </div>
+
+    <div class="ckeditor small-12 column">
+      <%= f.label :description, t("conversations.form.conversation_text") %>
+      <%= f.cktext_area :description, ckeditor: { language: I18n.locale }, label: false %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.label :polis_id, t("conversations.form.conversation_polis_id") %>
+      <%= f.text_field :polis_id, placeholder: t("conversations.form.conversation_polis_id"), label: false %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.label :rss_url, t("conversations.form.conversation_rss_url") %>
+      <%= f.text_field :rss_url, placeholder: t("conversations.form.conversation_rss_url"), label: false %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.label :tag_list, t("conversations.form.tags_label") %>
+      <p class="note"><%= t("conversations.form.tags_instructions") %></p>
+
+      <%= f.text_field :tag_list, value: @conversation.tag_list.to_s,
+                        label: false,
+                        placeholder: t("conversations.form.tags_placeholder") %>
+    </div>
+
+    <div class="actions small-12 column">
+      <%= f.submit(class: "button", value: t("conversations.#{action_name}.form.submit_button")) %>
+    </div>
+  </div>
+<% end %>
