@@ -35,6 +35,7 @@ en:
       tags_placeholder: "Enter the tags you would like to use, separated by commas (',')"
 
     new:
+      start_new: New conversation
       form:
         submit_button: Start a conversation
 

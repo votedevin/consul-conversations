@@ -22,6 +22,10 @@
 
     <div class="small-12 medium-3 column">
       <aside class="margin-bottom">
+        <% if can? :new, Consul::Conversations::Conversation %>
+          <%= link_to 'Create new conversation', new_conversation_path, class: 'button expanded' %>
+        <% end %>
+
         <%= link_to t("conversations.index.start_conversation"), Setting['start_conversation_url'], class: 'button expanded' %>
         <%= render "shared/tag_cloud", taggable: 'conversation' %>
       </aside>
