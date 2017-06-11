@@ -1,0 +1,34 @@
+<% provide :title do %><%= t('conversations.index.title') %><% end %>
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: conversations_path %>
+<% end %>
+
+<main>
+  <div class="row">
+    <div id="debates" class="debates-list small-12 medium-9 column">
+      <% if has_banners? %>
+        <%= render "shared/banner" %>
+      <% end %>
+
+      <%= render 'shared/order_links', i18n_namespace: "conversations.index" %>
+
+      <div class="show-for-small-only">
+        <%= link_to t("conversations.index.start_conversation"), Setting['start_conversation_url'], class: 'button expanded' %>
+      </div>
+
+      <%= render @conversations %>
+      <%= paginate @conversations %>
+    </div>
+
+    <div class="small-12 medium-3 column">
+      <aside class="margin-bottom">
+        <% if can? :new, Consul::Conversations::Conversation %>
+          <%= link_to 'Create new conversation', new_conversation_path, class: 'button expanded' %>
+        <% end %>
+
+        <%= link_to t("conversations.index.start_conversation"), Setting['start_conversation_url'], class: 'button expanded' %>
+        <%= render "shared/tag_cloud", taggable: 'conversation' %>
+      </aside>
+    </div>
+  </div>
+</main>

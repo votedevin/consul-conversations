@@ -1,0 +1,44 @@
+<script async='true' src='https://pol.is/embed.js'></script>
+
+<% provide :title do %><%= @conversation.title %><% end %>
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: conversation_url(@conversation) %>
+<% end %>
+
+<% cache [locale_and_user_status(@conversation), @conversation, @conversation.author] do %>
+  <div class="debate-show">
+    <div id="<%= dom_id(@conversation) %>" class="row">
+      <div class="small-12 medium-9 column">
+        <%= render "shared/back_link" %>
+
+        <% if can? :update, @conversation.__getobj__ %>
+          <%= link_to edit_conversation_path(@conversation), class: 'edit-debate button success small float-right' do %>
+            <span class="icon-edit"></span>
+            <%= t("conversations.show.edit_conversation_link") %>
+          <% end %>
+        <% end %>
+
+        <h1><%= @conversation.title %></h1>
+
+        <div class="debate-info">
+          <%= render '/shared/author_info', resource: @conversation %>
+
+          <span class="bullet">&nbsp;&bull;&nbsp;</span>
+          <%= l @conversation.created_at.to_date %>
+        </div>
+
+        <%= safe_html_with_links @conversation.description_with_polis.html_safe %>
+
+        <%= render 'shared/tags', taggable: @conversation %>
+      </div>
+
+      <aside class="small-12 medium-3 column">
+        <%= render partial: 'shared/social_share', locals: {
+          share_title: t("conversations.show.share"),
+          title: @conversation.title,
+          url: debate_url(@conversation)
+        } %>
+      </aside>
+    </div>
+  </div>
+<% end %>

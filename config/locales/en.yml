@@ -1,0 +1,57 @@
+en:
+  conversations:
+    conversation: Conversation
+
+  flash:
+    actions:
+      create:
+        conversation: Conversation created successfully
+      update:
+        conversation: Conversation updated successfully
+
+  form:
+    consul/conversations/conversation: Conversation
+
+  layouts:
+    header:
+      conversations: Conversations
+
+  conversations:
+    index:
+      title: Conversations
+      start_conversation: Start a Conversation
+      orders:
+        most_viewed: most viewed
+        created_at:  newest
+
+    form:
+      conversation_text: Initial conversation text
+      conversation_title: Conversation title
+      conversation_rss_url: RSS feed
+      conversation_polis_id: Pol.is conversation id
+      conversation_polis_id_placeholder: 'Pol.is id, example: 5hrmjdzhwm'
+      tags_instructions: Tag this conversation.
+      tags_label: Topics
+      tags_placeholder: "Enter the tags you would like to use, separated by commas (',')"
+
+    new:
+      start_new: New conversation
+      form:
+        submit_button: Start a conversation
+
+    create:
+      form:
+        submit_button: Start a conversation
+
+    edit:
+      editing: Edit conversation
+      form:
+        submit_button: Save changes
+      show_link: View conversation
+
+    update:
+      form:
+        submit_button: Save changes
+
+    show:
+      edit_conversation_link: Edit conversation
