@@ -1,3 +1,4 @@
+require 'cancancan'
 require "consul/conversations/engine"
 
 module Consul

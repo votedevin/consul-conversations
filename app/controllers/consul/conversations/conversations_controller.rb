@@ -5,10 +5,12 @@ module Consul
       include ::CommentableActions
 
       before_action :parse_tag_filter, only: :index
+      before_action :authenticate_user!, except: %i(index show)
 
       feature_flag :conversations
 
-      skip_authorization_check
+      skip_authorization_check only: [:index, :show]
+      load_and_authorize_resource only: [:new, :edit, :update]
 
       has_orders %w{most_viewed created_at}, only: :index
 
@@ -22,13 +24,8 @@ module Consul
         @conversation.update(views_count: @conversation.views_count + 1)
       end
 
-      def edit
-        @conversation = resource_model.find(params[:id])
-      end
-
       def update
-        @conversation = resource_model.find(params[:id])
-        if @conversation.update_attributes(conversation_params)
+        if resource.update_attributes(conversation_params)
           redirect_to conversation_url(@conversation), notice: t("flash.actions.update.#{resource_name.underscore}")
         else
           render :edit
@@ -61,6 +58,10 @@ module Consul
       # NOTE: override helper for conversations for construct right path
       def taggables_path(_taggable_type, tag_name)
         conversations_path(search: tag_name)
+      end
+
+      def current_ability
+        @current_ability ||= ConversationAbility.new(current_user)
       end
     end
   end
