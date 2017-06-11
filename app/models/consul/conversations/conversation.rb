@@ -32,6 +32,10 @@ module Consul
       def self.search(terms)
         self.pg_search(terms)
       end
+
+      def to_param
+        "#{id}-#{title}".parameterize
+      end
     end
   end
 end
