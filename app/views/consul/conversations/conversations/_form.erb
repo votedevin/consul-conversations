@@ -1,5 +1,4 @@
-<% url = @conversation.new_record? ? conversations_path : conversation_path(@conversation) %>
-<%= form_for(@conversation, url: url, as: :conversation) do |f| %>
+<%= form_for(@conversation, url: local_assigns[:url], as: :conversation) do |f| %>
   <%= render 'shared/errors', resource: @conversation %>
 
   <div class="row">
