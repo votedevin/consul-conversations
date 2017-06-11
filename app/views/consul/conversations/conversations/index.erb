@@ -23,6 +23,7 @@
     <div class="small-12 medium-3 column">
       <aside class="margin-bottom">
         <%= link_to t("conversations.index.start_conversation"), new_conversation_path, class: 'button expanded' %>
+        <%= render "shared/tag_cloud", taggable: 'conversation' %>
       </aside>
     </div>
   </div>

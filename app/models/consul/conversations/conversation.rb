@@ -19,6 +19,7 @@ module Consul
       scope :for_render, -> { includes(:tags) }
       scope :sort_by_created_at, -> { order(created_at: :desc) }
       scope :sort_by_most_viewed, -> { order(views_count: :desc) }
+      scope :last_week, -> { where("created_at >= ?", 7.days.ago)}
 
       def searchable_values
         {
