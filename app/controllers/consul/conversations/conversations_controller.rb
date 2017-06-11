@@ -9,8 +9,8 @@ module Consul
 
       feature_flag :conversations
 
-      skip_authorization_check only: [:index, :show]
-      load_and_authorize_resource only: [:new, :edit, :update]
+      skip_authorization_check only: %i(index show)
+      load_and_authorize_resource only: %i(new edit update create)
 
       has_orders %w{most_viewed created_at}, only: :index
 

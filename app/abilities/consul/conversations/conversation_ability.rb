@@ -1,6 +1,6 @@
 module Consul
-  module Conversations
-    class Ability
+  module Conversations 
+    class ConversationAbility
       include CanCan::Ability
 
       def initialize(user)
@@ -8,6 +8,7 @@ module Consul
           can :new, Conversation
           can :edit, Conversation
           can :update, Conversation
+          can :create, Conversation
         end
       end
     end
