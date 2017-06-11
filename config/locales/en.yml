@@ -51,3 +51,6 @@ en:
     update:
       form:
         submit_button: Save changes
+
+    show:
+      edit_conversation_link: Edit conversation
