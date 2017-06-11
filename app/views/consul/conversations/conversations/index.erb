@@ -13,7 +13,7 @@
       <%= render 'shared/order_links', i18n_namespace: "conversations.index" %>
 
       <div class="show-for-small-only">
-        <%= link_to t("conversations.index.start_conversation"), new_conversation_path, class: 'button expanded' %>
+        <%= link_to t("conversations.index.start_conversation"), Setting['start_conversation_url'], class: 'button expanded' %>
       </div>
 
       <%= render @conversations %>
@@ -22,7 +22,7 @@
 
     <div class="small-12 medium-3 column">
       <aside class="margin-bottom">
-        <%= link_to t("conversations.index.start_conversation"), new_conversation_path, class: 'button expanded' %>
+        <%= link_to t("conversations.index.start_conversation"), Setting['start_conversation_url'], class: 'button expanded' %>
         <%= render "shared/tag_cloud", taggable: 'conversation' %>
       </aside>
     </div>
