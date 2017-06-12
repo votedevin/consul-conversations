@@ -1,0 +1,11 @@
+<% if rss_url.present? %>
+  <% cache(rss_url, expires_in: 1.hour) do %>
+    <% feed = Consul::Conversations::RssPresenter.new(rss_url).call %>
+    <div class="sidebar-divider"></div>
+    <h2 class="sidebar-title">News</h2>
+
+    <% feed.items.each do |item| %>
+      <p><a target="_blank" href="<%= item.link %>"><%= item.title %></a></p>
+    <% end %>
+  <% end %>
+<% end %>
