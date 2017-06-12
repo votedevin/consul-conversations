@@ -38,6 +38,8 @@
           title: @conversation.title,
           url: debate_url(@conversation)
         } %>
+
+        <%= render partial: 'consul/conversations/shared/rss_sidebar', locals: {rss_url: @conversation.rss_url} %>
       </aside>
     </div>
   </div>
