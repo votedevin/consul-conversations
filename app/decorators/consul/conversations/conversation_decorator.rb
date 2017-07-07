@@ -14,9 +14,13 @@ module Consul
         end
       end
 
-      def description_without_polis
-        text = description.sub(POLIS_SOURCE_TAG, ''.freeze)
-        text.gsub(/<p>[\s$]*<\/p>/, ''.freeze)
+      def description_for_list
+        if excerpt.present?
+          excerpt
+        else
+          text = description.sub(POLIS_SOURCE_TAG, ''.freeze)
+          text.gsub(/<p>[\s$]*<\/p>/, ''.freeze)
+        end
       end
     end
   end

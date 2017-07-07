@@ -52,7 +52,8 @@ module Consul
                   :description,
                   :tag_list,
                   :rss_url,
-                  :polis_id)
+                  :polis_id,
+                  :excerpt)
       end
 
       # NOTE: override helper for conversations for construct right path

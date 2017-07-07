@@ -31,7 +31,7 @@
 
             </p>
             <div class="debate-description">
-              <%= Consul::Conversations::ConversationDecorator.new(conversation).description_without_polis.html_safe %>
+              <%= Consul::Conversations::ConversationDecorator.new(conversation).description_for_list.html_safe %>
               <div class="truncate"></div>
             </div>
             <%= render "shared/tags", taggable: conversation, limit: 5 %>
