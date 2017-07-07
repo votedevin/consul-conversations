@@ -22,6 +22,11 @@
       <%= f.text_field :rss_url, placeholder: t("conversations.form.conversation_rss_url"), label: false %>
     </div>
 
+    <div class="ckeditor small-12 column">
+      <%= f.label :excerpt %>
+      <%= f.cktext_area :excerpt, ckeditor: { language: I18n.locale }, label: false %>
+    </div>
+
     <div class="small-12 column">
       <%= f.label :tag_list, t("conversations.form.tags_label") %>
       <p class="note"><%= t("conversations.form.tags_instructions") %></p>
