@@ -9,7 +9,7 @@
   <div class="debate-show">
     <div id="<%= dom_id(@conversation) %>" class="row">
       <div class="small-12 medium-9 column">
-        <%= render "shared/back_link" %>
+        <%= back_link_to %>
 
         <% if can? :update, @conversation.__getobj__ %>
           <%= link_to edit_conversation_path(@conversation), class: 'edit-debate button success small float-right' do %>
