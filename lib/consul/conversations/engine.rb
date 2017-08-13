@@ -8,6 +8,14 @@ module Consul
           scope module: 'consul/conversations' do
             resources :conversations
           end
+
+          namespace :moderation do
+            resources :conversations, only: :index do
+              collection do
+                put :moderate
+              end
+            end
+          end
         end
       end
 
