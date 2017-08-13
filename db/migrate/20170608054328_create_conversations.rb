@@ -12,7 +12,9 @@ class CreateConversations < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_column :tags, "consul/conversations/conversations_count", :integer, default: 0
+    if table_exists?(:tags)
+      add_column :tags, "consul/conversations/conversations_count", :integer, default: 0
+    end
 
     add_column :conversations, :tsv, :tsvector
     add_index :conversations, :tsv, using: "gin"

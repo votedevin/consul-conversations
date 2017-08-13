@@ -1,10 +1,12 @@
 class AddConversationsToSettings < ActiveRecord::Migration
   def up
-    execute <<-SQL
+    if table_exists?(:settings)
+      execute <<-SQL
       INSERT INTO settings (key, value) VALUES ('feature.conversations', 'true');
       INSERT INTO settings (key, value) VALUES ('main_conversations_rss_url', '');
       INSERT INTO settings (key, value) VALUES ('start_conversation_url', '#');
-    SQL
+      SQL
+    end
   end
 
   def down
