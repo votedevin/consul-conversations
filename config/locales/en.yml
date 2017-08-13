@@ -55,3 +55,12 @@ en:
 
     show:
       edit_conversation_link: Edit conversation
+
+  moderation:
+    conversations:
+      index:
+        title: Conversations
+        order: Order by
+        conversation: Conversation
+        moderate: Moderate
+        hide: Hide conversations

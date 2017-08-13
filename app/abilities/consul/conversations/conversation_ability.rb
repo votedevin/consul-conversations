@@ -10,6 +10,9 @@ module Consul
           can :edit, Conversation
           can :update, Conversation
           can :create, Conversation
+          can :index, Conversation
+          can :moderate, Conversation
+          can :hide, Conversation
         end
       end
     end

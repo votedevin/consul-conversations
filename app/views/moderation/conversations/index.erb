@@ -1,0 +1,61 @@
+<h2><%= t("moderation.conversations.index.title") %></h2>
+
+<%= render 'shared/filter_subnav', i18n_namespace: "moderation.conversations.index" %>
+
+<div class="row">
+  <h3 class="small-8 large-8 columns"><%= page_entries_info @conversations %></h3>
+  <div class="small-4 large-4 columns">
+    <div class="float-right">
+      <%= t("moderation.conversations.index.order") %>
+      <%= render 'shared/order_selector', i18n_namespace: "moderation.conversations.index" %>
+    </div>
+  </div>
+</div>
+
+<%= form_tag moderate_moderation_conversations_path(request.query_parameters), method: :put do %>
+  <p class="js-check">
+    <%= t('shared.check') %>:
+    <%= link_to t('shared.check_all'), '#', data: {check_all: "conversations_ids[]"} %>
+    |
+    <%= link_to t('shared.check_none'), '#', data: {check_none: "conversations_ids[]"} %>
+  </p>
+
+  <table class="clear">
+    <tr>
+      <th>
+        <%= t("moderation.conversations.index.headers.conversation") %>
+      </th>
+      <th>
+       <%= t("moderation.conversations.index.headers.moderate") %>
+      </th>
+    </tr>
+    <% @conversations.each do |record| %>
+      <tr id="proposal_<%= record.id %>">
+        <td>
+          <%= link_to record.title, conversation_path(record), target: "_blank" %>
+          <br>
+          <span class="date"><%= l record.updated_at.to_date %></span>
+          <span class="bullet">&nbsp;&bull;&nbsp;</span>
+          <%= record.author.username %>
+          <br>
+          <div class="moderation-description">
+            <%= Consul::Conversations::ConversationDecorator.new(record).description_for_list %>
+          </div>
+        </td>
+        <td class="text-center">
+          <%= check_box_tag "conversations_ids[]", record.id, nil, id: "#{dom_id( record)}_check" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="float-right">
+    <%= submit_tag t('moderation.conversations.index.hide'),
+      name: "hide_conversations",
+      class: "button hollow alert",
+      data: {confirm: t('moderation.proposals.index.confirm')}
+    %>
+  </div>
+
+  <%= paginate @conversations %>
+<% end %>
