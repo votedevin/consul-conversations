@@ -39,7 +39,7 @@
           <%= record.author.username %>
           <br>
           <div class="moderation-description">
-            <%= Consul::Conversations::ConversationDecorator.new(record).description_for_list %>
+            <%= Consul::Conversations::ConversationDecorator.new(record).description_for_list.html_safe %>
           </div>
         </td>
         <td class="text-center">
