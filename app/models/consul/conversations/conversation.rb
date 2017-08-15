@@ -36,6 +36,11 @@ module Consul
       def to_param
         "#{id}-#{title}".parameterize
       end
+
+      def restore(opts = {})
+        return false unless hidden?
+        super(opts)
+      end
     end
   end
 end

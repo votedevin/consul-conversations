@@ -16,6 +16,14 @@ module Consul
               end
             end
           end
+
+          namespace :admin do
+            resources :conversations, only: :index do
+              member do
+                put :restore
+              end
+            end
+          end
         end
       end
 

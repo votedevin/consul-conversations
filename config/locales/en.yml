@@ -64,3 +64,8 @@ en:
         conversation: Conversation
         moderate: Moderate
         hide: Hide conversations
+
+  admin:
+    conversations:
+      index:
+        title: Hidden conversations

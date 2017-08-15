@@ -1,0 +1,29 @@
+<h2><%= t("admin.conversations.index.title") %></h2>
+
+<%= render 'shared/filter_subnav', i18n_namespace: "admin.conversations.index" %>
+
+<h3><%= page_entries_info @conversations %></h3>
+
+<table>
+  <% @conversations.each do |conversation| %>
+    <tr id="<%= dom_id(conversation) %>">
+      <td>
+        <strong><%= conversation.title %></strong>
+        <br>
+        <div class="moderation-description">
+          <%= Consul::Conversations::ConversationDecorator.new(conversation).description_for_list.html_safe %>
+        </div>
+      </td>
+      <td class="text-right">
+        <%= link_to t("admin.actions.restore"),
+              restore_admin_conversation_path(conversation, request.query_parameters),
+              method: :put,
+              data: { confirm: t("admin.actions.confirm") },
+              class: "button hollow on-hover-block" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @conversations %>
+
